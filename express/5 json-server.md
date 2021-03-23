@@ -42,3 +42,4 @@ Also when doing requests, it's good to know that:
 
 数据类型不支持string，最好还是数组、对象，布尔值。
 
+**json对象需要是一个对象，不能是数组**

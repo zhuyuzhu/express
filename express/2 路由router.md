@@ -320,9 +320,9 @@ module.exports = router
 ```javascript
 var birds = require('./birds')
 
-// ...
+// 声明以哪些路径开头的请求会进入到该路由当中。
 
-app.use('/birds', birds)
+app.use('/birds', birds)  
 ```
 
-该应用程序现在将能够处理对`/birds`和的请求`/birds/about`，以及调用`timeLog`特定于该路线的中间件功能。
+该应用程序现在将能够**处理对`/birds`和的请求`/birds/about`**，以及调用`timeLog`特定于该路线的中间件功能。
