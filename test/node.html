@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">同源按钮</button>
+    <button id="btn2">跨域按钮</button>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+
+        var XHR1 = new XMLHttpRequest();
+        var x2 = new XMLHttpRequest();
+
+        btn1.onclick = function(){
+            var url1 = '/postSameOrigin';
+            XHR1.open('POST', url1);
+            XHR1.setRequestHeader("Content-type","application/json; charset=utf-8")
+            var data = {
+                name: 'zhu',
+                age: 26
+            }
+            XHR1.send(JSON.stringify(data));
+
+        }
+        XHR1.onreadystatechange = function(event){
+            if(XHR1.readyState == 4 && XHR1.status == 200){
+                console.log(XHR1)
+            }
+        }
+        btn2.onclick = function(){
+            var url2 = 'http://localhost:8080/crossOrigin';
+            x2.open('POST', url2);
+            // x2.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+            // x2.setRequestHeader("Content-type","text/plain"); //文本的话，
+            x2.setRequestHeader('X-PINGOTHER', 'pingpong');
+            x2.setRequestHeader("Content-type","application/json; charset=utf-8")
+            // x2.withCredentials = true;
+            var data = {
+                name: 'lizhi',
+                age: 24
+            }
+            x2.send(JSON.stringify(data));
+        }
+        x2.onreadystatechange = function(event){
+            if(x2.readyState == 4 && x2.status == 200){
+                console.log(x2)
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
